@@ -1,0 +1,12 @@
+.reset-btn {
+  font-family: fantasy;
+  letter-spacing: 2px;
+  font-size: 24px;
+  padding: 10px;
+  background-color: orangered;
+  color: rgb(0, 0, 0);
+  width: 100px;
+  border: 2px solid #000;
+  cursor: pointer;
+  border-radius: 10px;
+}
