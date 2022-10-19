@@ -1,37 +1,37 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addProduct, increamentCartCounter } from "../../redux/cartSlice";
 import "./style.css";
 export const Product = (props) => {
-  console.log("Test", props);
-
+  console.log("Props for product", props);
+  const dispatch = useDispatch();
+  const addToCart = (product) => {
+    dispatch(increamentCartCounter(1));
+    dispatch(addProduct(product));
+  };
   return props.products.map((product) => {
     return (
-      <div className="col mb-5">
-        <div className="card card-shadow p-3">
-          <Link to={`/shop/${product.id}`}>
-            <img className="card-img-top" src={product.image} alt="..." />
+      <div className="col custom-product">
+        <div className="card h-100">
+          <Link to={`/shop/${product.id}`} className="text-center">
+            <img src={product.image} class="card-img-top w-50 p-4" alt="..." />
           </Link>
-          <div className="card-body p-4">
-            <div className="text-center">
-              <h5 className="fw-bolder">{product.title}</h5>
-              {product.price}
-            </div>
+
+          <div className="card-body">
+            <h5 className="card-title">{product.title}</h5>
+            <p className="card-text">{product.description.slice(0, 100)}</p>
           </div>
-          <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div className="text-center">
-              <Link
-                className="btn btn-outline-dark mt-auto mb-2"
-                to={`/shop/${product.id}`}
-              >
-                View details
-              </Link>
-              <button
-                type="button"
-                class="btn btn-success"
-                onClick={props.cartCounter}
-              >
-                Add To Cart
-              </button>
-            </div>
+          <div className="card-footer d-flex justify-content-around">
+            <Link className="btn btn-outline-dark" to={`/shop/${product.id}`}>
+              Details
+            </Link>
+            <button
+              type="button"
+              className="btn btn-outline-success"
+              onClick={() => addToCart(product)}
+            >
+              Add To Cart
+            </button>
           </div>
         </div>
       </div>

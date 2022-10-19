@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const Navbar = (props) => {
+export const Navbar = () => {
+  const cartCounter = useSelector((state) => state.addToCartStore.counter);
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,7 +25,7 @@ export const Navbar = (props) => {
             className="collapse navbar-collapse justify-content-end"
             id="navbarSupportedContent"
           >
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ms-lg-4">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">
                   Home
@@ -46,11 +48,11 @@ export const Navbar = (props) => {
               </li>
             </ul>
 
-            <Link className="btn btn-outline-light" to="/cart">
+            <Link className="btn btn-outline-warning ms-3" to="/cart">
               <i className="bi-cart-fill me-1"></i>
               Cart
-              <span className="badge bg-dark text-white ms-1 rounded-pill">
-                {props.counter}
+              <span className="badge bg-danger text-dark ms-1 rounded-pill">
+                {cartCounter}
               </span>
             </Link>
           </div>

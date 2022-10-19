@@ -6,22 +6,17 @@ import { Shop } from "./components/shop";
 import { About } from "./components/about";
 import { Details } from "./components/product-details";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+
 import { Product } from "./components/product";
 import { Cart } from "./components/cart";
 function App() {
-  const cartCounter = () => {
-    setCounter(counter + 1);
-  };
-  let [counter, setCounter] = useState(0);
-
   return (
     <BrowserRouter>
-      <Navbar counter={counter}></Navbar>
+      <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/shop" element={<Shop cartCounter={cartCounter} />} />
+        <Route path="/shop" element={<Shop />} />
         <Route element={<Product />} />
         <Route path="/shop/:id" element={<Details />} />
         <Route path="/cart" element={<Cart />} />

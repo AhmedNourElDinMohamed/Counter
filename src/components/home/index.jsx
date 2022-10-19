@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./style.css";
 export const Home = () => {
+  const counter = useSelector((state) => state.counterStore.counter);
   return (
     <section className="bgimage py-5">
       <div className="container">
@@ -15,11 +17,12 @@ export const Home = () => {
               three supporting pieces of content. Use it as a starting point to
               create something more unique.
             </p>
-            <p>
-              <Link to="/shop" className="btn btn-outline-light btn-large">
+            <div>
+              <Link to="/shop" className="btn btn-outline-light btn-large mb-3">
                 Shooping »
               </Link>
-            </p>
+              <p className="text-danger mb-5">We Have {counter} Product</p>
+            </div>
           </div>
         </div>
       </div>

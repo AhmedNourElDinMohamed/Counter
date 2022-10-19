@@ -1,7 +1,7 @@
 import { Product } from "../product";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-export const Shop = (props) => {
+export const Shop = () => {
   const getProducts = () => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
@@ -13,20 +13,24 @@ export const Shop = (props) => {
   useEffect(() => {
     getProducts();
   }, []);
+
+  if (products === []) {
+    return <Spinner animation="border" />;
+  }
+
   return (
-    <section className="py-5">
-      <div className="container px-4 px-lg-5 mt-5">
-        <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-          {products === [] ? (
-            <Spinner animation="border" />
-          ) : (
-            <Product
-              products={products}
-              cartCounter={props.cartCounter}
-            ></Product>
-          )}
-        </div>
-      </div>
-    </section>
+    <>
+      {products === [] ? (
+        <Spinner animation="border" />
+      ) : (
+        <section className="py-5">
+          <div className="container px-4 px-lg-5 mt-5">
+            <div className="row row-cols-1 row-cols-md-3 g-4">
+              <Product products={products}></Product>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 };

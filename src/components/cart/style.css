@@ -1,0 +1,22 @@
+.cart-image {
+  width: 20%;
+}
+.product-details {
+  border: 2px solid rgb(142, 137, 137);
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+.product-info {
+  width: 30%;
+}
+.product-info .product-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+.product-info .product-desc {
+  font-size: 10px;
+}
+
+.trash-icon {
+  cursor: pointer;
+}

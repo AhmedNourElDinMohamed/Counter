@@ -1,21 +1,23 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./Counter.css";
+import {
+  decreamentCounter,
+  increamentCounter,
+  resetCounter,
+} from "../../redux/counterSlice";
+export const Counter = () => {
+  const counter = useSelector((state) => state.counterStore.counter);
+  const dispatch = useDispatch();
 
-export const Counter = (props) => {
-  let [counter, setCounter] = useState(0);
-
-  const increamentCounter = () => {
-    setCounter(counter + 1);
+  const increament = () => {
+    dispatch(increamentCounter(1));
   };
-
-  const decreamenttCounter = () => {
-    if (counter > 0) setCounter(counter - 1);
+  const decreament = () => {
+    dispatch(decreamentCounter(1));
   };
-
-  const resetCounter = () => {
-    setCounter((counter = 0));
+  const reset = () => {
+    dispatch(resetCounter());
   };
-
   return (
     <>
       <div className="container wrapper">
@@ -24,13 +26,13 @@ export const Counter = (props) => {
           <div className="count">{counter}</div>
         </div>
         <div className="btn-wrapper">
-          <button onClick={decreamenttCounter} className="decrease-btn">
+          <button onClick={decreament} className="decrease-btn">
             -
           </button>
-          <button onClick={resetCounter} className="reset-btn">
+          <button onClick={reset} className="reset-btn">
             Reset
           </button>
-          <button onClick={increamentCounter} className="increase-btn">
+          <button onClick={increament} className="increase-btn">
             +
           </button>
         </div>
