@@ -1,3 +1,9 @@
+import aboutUS from "../../assets/images/about-us.svg";
+
 export const About = () => {
-  return <h1>Hello Fom About</h1>;
+  return (
+    <div className="d-flex justify-content-center align-items-center vh-100">
+      <img src={aboutUS} alt="" />
+    </div>
+  );
 };

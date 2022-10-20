@@ -4,21 +4,25 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import { removeProduct } from "../../redux/cartSlice";
 export const Cart = () => {
-  const cartProducts = useSelector((state) => state.addToCartStore.productList);
+  const cartProducts = useSelector((state) => state.addToCartStore.productList); // Select From Store With useSelect
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Use Hook useDispatche To Calling Action
+
   const removeFromCart = (product) => {
+    // Function To Handling Disbatch
     dispatch(removeProduct(product));
   };
+
   console.log(cartProducts);
-  // increament Quantity For Product
+  // increament Quantity For Single Product
   function increamentQuant(productID) {
     cartProducts.forEach((product) => {
       if (productID === product.id) {
-        console.log(product.quant);
+        ++product.quant;
       }
     });
   }
+
   return (
     <>
       {cartProducts.length === 0 ? (
@@ -44,7 +48,7 @@ export const Cart = () => {
                     <h4>Add something to make me happy :)</h4>
                     <Link
                       to="/shop"
-                      className="btn btn-primary cart-btn-transform m-3"
+                      className="btn btn-warning cart-btn-transform m-3 fw-bold"
                       data-abc="true"
                     >
                       continue shopping
@@ -77,7 +81,10 @@ export const Cart = () => {
               </div>
               {cartProducts.map((product) => {
                 return (
-                  <div className="d-flex flex-row justify-content-between align-items-center px-5 py-2 bg-white mt-4 px-3 rounded product-details">
+                  <div
+                    key={product.id}
+                    className="d-flex flex-row justify-content-between align-items-center px-5 py-2 bg-white mt-4 px-3 rounded product-details"
+                  >
                     <div className="me-1 cart-image">
                       <img src={product.image} className="w-100" alt="" />
                     </div>

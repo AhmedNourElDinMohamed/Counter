@@ -18,24 +18,24 @@ export const cartSlice = createSlice({
       state.counter -= action.payload;
     },
     addProduct: (state, action) => {
+      // Reducer To Add Product To Cart
       if (!state.productList.length) {
-        console.log("hhhhhhhhhh");
-        console.log(action.payload);
+        // To Add The First Product To Cart
         action.payload.quant = 1;
         state.productList.push(action.payload);
         console.log("with prop", action.payload);
         --action.payload.rating.count;
       } else {
         state.productList.forEach((product) => {
+          //Check If Product In Cart Or Not To Increament Quantity Without Push It
           if (action.payload.id === product.id) {
-            console.log(product.rating.count);
             --product.rating.count;
             ++product.quant;
-            console.log(product.rating.count);
           }
         });
       }
       if (
+        // If Product Not Includes In Cart Push It
         !state.productList.some((product) => {
           return action.payload.id === product.id;
         })
@@ -45,6 +45,7 @@ export const cartSlice = createSlice({
       }
     },
     removeProduct: (state, action) => {
+      // Remove Product From Cart And Decrease Counter
       state.productList = state.productList.filter((product) => {
         return product.id !== action.payload.id;
       });

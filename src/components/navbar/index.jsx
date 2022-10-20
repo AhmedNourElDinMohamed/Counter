@@ -1,11 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../../redux/authSlice";
 
 export const Navbar = () => {
   const cartCounter = useSelector((state) => state.addToCartStore.counter);
+  const loginStatus = useSelector((state) => state.loginStore.login);
+  const dispatch = useDispatch();
+  const loginAuth = () => {
+    dispatch(logout());
+  };
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container px-4 px-lg-5">
           <Link className="navbar-brand" to="/">
             E-Commerce
@@ -46,6 +52,26 @@ export const Navbar = () => {
                   counter
                 </Link>
               </li>
+              {loginStatus ? (
+                <li className="nav-item">
+                  <Link onClick={loginAuth} className="nav-link" to="/">
+                    Logout
+                  </Link>
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/signup">
+                      Signup
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/signin">
+                      Signin
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
 
             <Link className="btn btn-outline-warning ms-3" to="/cart">

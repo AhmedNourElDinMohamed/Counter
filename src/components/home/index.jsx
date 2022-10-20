@@ -4,7 +4,7 @@ import "./style.css";
 export const Home = () => {
   const counter = useSelector((state) => state.counterStore.counter);
   return (
-    <section className="bgimage py-5">
+    <section className="bgimage vh-100 d-flex justify-content-center align-items-center">
       <div className="container">
         <div className="row">
           <div className="col-md-6 col-sm-12 p-5 hero-section">
@@ -21,7 +21,9 @@ export const Home = () => {
               <Link to="/shop" className="btn btn-outline-light btn-large mb-3">
                 Shooping »
               </Link>
-              <p className="text-danger mb-5">We Have {counter} Product</p>
+              <p className="text-danger mb-5 fw-bold">
+                We Have {counter} Product
+              </p>
             </div>
           </div>
         </div>

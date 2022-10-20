@@ -1,14 +1,19 @@
 import "./App.css";
-import { Counter } from "./components/counter/Counter";
+// Start Components
 import { Navbar } from "./components/navbar";
 import { Home } from "./components/home";
-import { Shop } from "./components/shop";
 import { About } from "./components/about";
+import { Shop } from "./components/shop";
 import { Details } from "./components/product-details";
+import { Cart } from "./components/cart";
+import { Signup } from "./components/sign-up";
+import { Signin } from "./components/sign-in";
+import { Notfound } from "./components/not-found";
+import { Counter } from "./components/counter/Counter";
+
+// End Components
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Product } from "./components/product";
-import { Cart } from "./components/cart";
 function App() {
   return (
     <BrowserRouter>
@@ -16,10 +21,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="*" element={<Notfound />} />
         <Route path="/shop" element={<Shop />} />
-        <Route element={<Product />} />
         <Route path="/shop/:id" element={<Details />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
         <Route path="/counter" element={<Counter />} />
       </Routes>
     </BrowserRouter>

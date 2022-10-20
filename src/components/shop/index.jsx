@@ -20,8 +20,10 @@ export const Shop = () => {
 
   return (
     <>
-      {products === [] ? (
-        <Spinner animation="border" />
+      {products.length === 0 ? (
+        <div className="d-flex justify-content-center align-items-center vh-100">
+          <Spinner animation="border" variant="danger" />
+        </div>
       ) : (
         <section className="py-5">
           <div className="container px-4 px-lg-5 mt-5">

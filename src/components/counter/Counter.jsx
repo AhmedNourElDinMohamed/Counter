@@ -19,9 +19,9 @@ export const Counter = () => {
     dispatch(resetCounter());
   };
   return (
-    <>
-      <div className="container wrapper">
-        <h1 className="heading">Counter</h1>
+    <section className="vh-100 d-flex justify-content-center align-items-center">
+      <div className="w-75 wrapper">
+        <h1 className="heading">Product In Site</h1>
         <div className="counter-wrapper">
           <div className="count">{counter}</div>
         </div>
@@ -37,6 +37,6 @@ export const Counter = () => {
           </button>
         </div>
       </div>
-    </>
+    </section>
   );
 };

@@ -1,5 +1,6 @@
 .wrapper {
-  background-color: #222e43;
+  margin-top: 20px;
+  background-color: #111c31;
   min-height: 50vh;
   width: 70%;
   display: flex;
@@ -8,6 +9,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  border-radius: 30px;
 }
 
 .heading {
