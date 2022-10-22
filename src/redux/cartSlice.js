@@ -51,6 +51,21 @@ export const cartSlice = createSlice({
       });
       state.counter -= action.payload.quant;
     },
+    // Increament Quantity
+    increamentProductQuant: (state, action) => {
+      const itemIndex = state.productList.findIndex(
+        (product) => product.id === action.payload.product.id
+      );
+      state.productList[itemIndex].quant += 1;
+      state.counter += 1;
+    },
+    decreamentProductQuant: (state, action) => {
+      const itemIndex = state.productList.findIndex(
+        (product) => product.id === action.payload.product.id
+      );
+      state.productList[itemIndex].quant -= 1;
+      state.counter -= 1;
+    },
   },
 });
 
@@ -59,4 +74,6 @@ export const { increamentCartCounter } = cartSlice.actions;
 export const { decrementCartCounter } = cartSlice.actions;
 export const { addProduct } = cartSlice.actions;
 export const { removeProduct } = cartSlice.actions;
+export const { increamentProductQuant } = cartSlice.actions;
+export const { decreamentProductQuant } = cartSlice.actions;
 console.log(cartSlice);

@@ -2,26 +2,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaTrashAlt } from "react-icons/fa";
 import "./style.css";
 import { Link } from "react-router-dom";
-import { removeProduct } from "../../redux/cartSlice";
+import {
+  decreamentProductQuant,
+  increamentProductQuant,
+  removeProduct,
+} from "../../redux/cartSlice";
 export const Cart = () => {
   const cartProducts = useSelector((state) => state.addToCartStore.productList); // Select From Store With useSelect
 
   const dispatch = useDispatch(); // Use Hook useDispatche To Calling Action
 
+  //remove Product From Cart
   const removeFromCart = (product) => {
-    // Function To Handling Disbatch
     dispatch(removeProduct(product));
   };
 
+  //remove Product From Cart
+  const increamentQuant = (product, productQuant) => {
+    dispatch(increamentProductQuant({ product, productQuant }));
+  };
+
+  //remove Product From Cart
+  const decreamentQuant = (product, productQuant) => {
+    dispatch(decreamentProductQuant({ product, productQuant }));
+  };
+
   console.log(cartProducts);
-  // increament Quantity For Single Product
-  function increamentQuant(productID) {
-    cartProducts.forEach((product) => {
-      if (productID === product.id) {
-        ++product.quant;
-      }
-    });
-  }
 
   return (
     <>
@@ -98,7 +104,7 @@ export const Cart = () => {
                     </div>
                     <div className="d-flex flex-row align-items-center qty">
                       <button
-                        onClick={() => increamentQuant(product.id)}
+                        onClick={() => increamentQuant(product)}
                         className="btn btn-success"
                       >
                         +
@@ -106,7 +112,12 @@ export const Cart = () => {
                       <span className="text-grey mx-3 fw-bold fs-5">
                         {product.quant}
                       </span>
-                      <button className="btn btn-danger">-</button>
+                      <button
+                        onClick={() => decreamentQuant(product)}
+                        className="btn btn-danger"
+                      >
+                        -
+                      </button>
                     </div>
                     <div>
                       <h5 className="text-danger">
